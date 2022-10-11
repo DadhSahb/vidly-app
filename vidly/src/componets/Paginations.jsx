@@ -1,5 +1,6 @@
 import React from "react";
 import { Pagination, PaginationItem, PaginationLink } from "reactstrap";
+import PropTypes from "prop-types";
 import _ from "lodash";
 
 function Paginations({ pageLength, pageSize, currentPage, onPageChange }) {
@@ -23,5 +24,12 @@ function Paginations({ pageLength, pageSize, currentPage, onPageChange }) {
     </Pagination>
   );
 }
+
+Paginations.propTypes = {
+  pageLength: PropTypes.number,
+  pageSize: PropTypes.number,
+  currentPage: PropTypes.number,
+  onPageChange: PropTypes.func,
+};
 
 export default Paginations;
