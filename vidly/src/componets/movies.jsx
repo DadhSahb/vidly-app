@@ -42,7 +42,7 @@ class Movies extends React.Component {
         <div className="col-2">
           <GroupListing />
         </div>
-        <div className="col">
+        <div className="col col-2">
           <p>Showing {count} movies in the database</p>
           <table className="table">
             <thead>
