@@ -1,12 +1,22 @@
 import React from "react";
 import { getMovies } from "../services/fakeMovieService";
+import { getGenres } from "../services/fakeGenreService";
 import Paginate from "../Utils/Paginate";
 import GroupListing from "./GroupListing";
 import Like from "./Like";
 import Paginations from "./Paginations";
 
 class Movies extends React.Component {
-  state = { movies: getMovies(), currentPage: 1, pageSize: 4 };
+  state = {
+    movies: [],
+    genres: [],
+    currentPage: 1,
+    pageSize: 4,
+  };
+
+  componentDidMount() {
+    this.setState({ movies: getMovies(), genres: getGenres() });
+  }
 
   handleDelete = (movie) => {
     const movies = this.state.movies.filter((m) => m._id !== movie._id);
@@ -25,6 +35,10 @@ class Movies extends React.Component {
     this.setState({ currentPage: page });
   };
 
+  handelGenreSelect = (genre) => {
+    console.log(genre);
+  };
+
   render() {
     const { length: count } = this.state.movies;
     const { pageSize, currentPage, movies: allMovies } = this.state;
@@ -39,10 +53,13 @@ class Movies extends React.Component {
       );
     return (
       <div className="row">
-        <div className="col-2">
-          <GroupListing />
+        <div className="col-3">
+          <GroupListing
+            items={this.state.genres}
+            onItemSelect={this.handelGenreSelect}
+          />
         </div>
-        <div className="col col-2">
+        <div className="col-3">
           <p>Showing {count} movies in the database</p>
           <table className="table">
             <thead>
