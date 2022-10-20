@@ -3,7 +3,7 @@ import React from "react";
 const GroupListing = () => {
   return (
     <div>
-      <h2>Hamza hamid</h2>
+      <h2>Group 1</h2>
     </div>
   );
 };
