@@ -2,9 +2,9 @@ import React from "react";
 import { getMovies } from "../services/fakeMovieService";
 import { getGenres } from "../services/fakeGenreService";
 import Paginate from "../Utils/Paginate";
-import GroupListing from "./GroupListing";
-import Like from "./Like";
-import Paginations from "./Paginations";
+import GroupListing from "./common/GroupListing";
+import Like from "./common/Like";
+import Paginations from "./common/Paginations";
 
 class Movies extends React.Component {
   state = {
