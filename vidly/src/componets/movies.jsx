@@ -5,6 +5,7 @@ import Paginate from "../Utils/Paginate";
 import GroupListing from "./common/GroupListing";
 import Paginations from "./common/Paginations";
 import MoviesTable from "./moviesTable";
+import _ from "lodash";
 
 class Movies extends React.Component {
   state = {
@@ -12,10 +13,11 @@ class Movies extends React.Component {
     genres: [],
     currentPage: 1,
     pageSize: 4,
+    sortColumb: { path: "title", order: "asc" },
   };
 
   componentDidMount() {
-    const genres = [{ name: "All Genres" }, ...getGenres()];
+    const genres = [{ _id: "", name: "All Genres" }, ...getGenres()];
     this.setState({ movies: getMovies(), genres });
   }
 
@@ -40,11 +42,15 @@ class Movies extends React.Component {
     this.setState({ selectedGenre: genre, currentPage: 1 });
   };
 
+  handleSort = (path) => {
+    this.setState({ sortColumb: { path, order: "asc" } });
+  };
   render() {
     const { length: count } = this.state.movies;
     const {
       pageSize,
       currentPage,
+      sortColumb,
       selectedGenre,
       movies: allMovies,
     } = this.state;
@@ -54,7 +60,9 @@ class Movies extends React.Component {
         ? allMovies.filter((m) => m.genre._id === selectedGenre._id)
         : allMovies;
 
-    const movies = Paginate(filtered, currentPage, pageSize);
+    const sorted = _.orderBy(filtered, [sortColumb.path], [sortColumb.order]);
+
+    const movies = Paginate(sorted, currentPage, pageSize);
 
     if (count === 0)
       return (
@@ -78,6 +86,7 @@ class Movies extends React.Component {
             movies={movies}
             onDelete={this.handleDelete}
             onLike={this.handleLike}
+            onSort={this.handleSort}
           />
           <Paginations
             pageLength={filtered.length}
