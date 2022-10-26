@@ -43,7 +43,14 @@ class Movies extends React.Component {
   };
 
   handleSort = (path) => {
-    this.setState({ sortColumb: { path, order: "asc" } });
+    const sortColumb = { ...this.state.sortColumb };
+    if (sortColumb.path === path)
+      sortColumb.order = sortColumb.order === "asc" ? "desc" : "asc";
+    else {
+      sortColumb.path = path;
+      sortColumb.order = "asc";
+    }
+    this.setState({ sortColumb });
   };
   render() {
     const { length: count } = this.state.movies;
