@@ -1,7 +1,4 @@
 import React, { Component } from "react";
-//columns: array
-//onSort: function
-//sortColumn: obj
 
 class TableHedaer extends Component {
   raiseSort = (path) => {
