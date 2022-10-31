@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 class TableHedaer extends Component {
   raiseSort = (path) => {
     const sortColumb = { ...this.props.sortColumb };
