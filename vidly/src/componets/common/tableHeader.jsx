@@ -10,6 +10,7 @@ class TableHedaer extends Component {
     }
     this.props.onSort(sortColumb);
   };
+  //sortIcons
   renderSortIcon = (column) => {
     if (column.path !== this.props.sortColumb.path) return null;
     if (this.props.sortColumb.order === "asc") {
