@@ -20,12 +20,12 @@ class Movies extends React.Component {
     const genres = [{ _id: "", name: "All Genres" }, ...getGenres()];
     this.setState({ movies: getMovies(), genres });
   }
-
+  //for deleting a movie
   handleDelete = (movie) => {
     const movies = this.state.movies.filter((m) => m._id !== movie._id);
     this.setState({ movies });
   };
-
+  //for handling like
   handleLike = (like) => {
     const movies = [...this.state.movies];
     const index = movies.indexOf(like);
@@ -33,7 +33,7 @@ class Movies extends React.Component {
     movies[index].liked = !movies[index].liked;
     this.setState({ movies });
   };
-
+  //hanle pagination
   handlePageChange = (page) => {
     this.setState({ currentPage: page });
   };
