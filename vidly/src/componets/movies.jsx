@@ -6,6 +6,7 @@ import GroupListing from "./common/GroupListing";
 import Paginations from "./common/Paginations";
 import MoviesTable from "./moviesTable";
 import _ from "lodash";
+import NavBar from "./common/navBar";
 
 class Movies extends React.Component {
   state = {
@@ -72,29 +73,32 @@ class Movies extends React.Component {
       );
 
     return (
-      <div className="row">
-        <p>Showing {filtered.length} movies in the database</p>
-        <div className="col-3">
-          <GroupListing
-            items={this.state.genres}
-            selectedItem={this.state.selectedGenre}
-            onItemSelect={this.handelGenreSelect}
-          />
-        </div>
-        <div className="col-3">
-          <MoviesTable
-            movies={movies}
-            onDelete={this.handleDelete}
-            onLike={this.handleLike}
-            onSort={this.handleSort}
-            sortColumb={sortColumb}
-          />
-          <Paginations
-            pageLength={filtered.length}
-            pageSize={pageSize}
-            currentPage={currentPage}
-            onPageChange={this.handlePageChange}
-          />
+      <div>
+        <NavBar />
+        <div className="row">
+          <p>Showing {filtered.length} movies in the database</p>
+          <div className="col-3">
+            <GroupListing
+              items={this.state.genres}
+              selectedItem={this.state.selectedGenre}
+              onItemSelect={this.handelGenreSelect}
+            />
+          </div>
+          <div className="col-3">
+            <MoviesTable
+              movies={movies}
+              onDelete={this.handleDelete}
+              onLike={this.handleLike}
+              onSort={this.handleSort}
+              sortColumb={sortColumb}
+            />
+            <Paginations
+              pageLength={filtered.length}
+              pageSize={pageSize}
+              currentPage={currentPage}
+              onPageChange={this.handlePageChange}
+            />
+          </div>
         </div>
       </div>
     );
