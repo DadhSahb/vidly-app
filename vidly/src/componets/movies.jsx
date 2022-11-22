@@ -85,6 +85,7 @@ class Movies extends React.Component {
             />
           </div>
           <div className="col-3">
+            {/* for movies table */}
             <MoviesTable
               movies={movies}
               onDelete={this.handleDelete}
@@ -92,6 +93,7 @@ class Movies extends React.Component {
               onSort={this.handleSort}
               sortColumb={sortColumb}
             />
+            {/* for pagination */}
             <Paginations
               pageLength={filtered.length}
               pageSize={pageSize}
